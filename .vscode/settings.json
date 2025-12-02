@@ -1,0 +1,8 @@
+{
+"code-runner.executorMap": {
+    "kotlin": "cd /run/media/tillp/Linux/01_Privat/Git\\ Repos/advent-of-code-kotlin-2025 && kotlinc src/Utils.kt src/$fileName -include-runtime -d app.jar && java -jar app.jar"
+},    
+"code-runner.runInTerminal": true
+
+
+}
