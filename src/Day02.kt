@@ -1,21 +1,40 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    fun isValidIdPart2(id: String): Boolean {
+        for (substringLength in 1..id.length/2){
+            //makes sense only to check cases if multiple of current substring is able to be fully x times in full id
+            if(id.length % substringLength == 0) {
+                val pattern = id.take(substringLength)
+                //check if pattern n times repeated the same as id
+                if(pattern.repeat(id.length / substringLength) == id) {
+                    return false
+                }
+
+            }
+        }
+        return true
+    }
+    fun isValidId(id: Long, extraCheck: Boolean): Boolean {
+        val stringId = id.toString()
+        if(id.toString().length % 2 != 0 && !extraCheck) return true
+        if(stringId.take(stringId.length /2) == stringId.substring( stringId.length /2, stringId.length)) return false
+        if(extraCheck){
+             return isValidIdPart2(stringId)
+        }
+        return true
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+    fun part1(input: List<String>, extraCheck: Boolean): Long {
+        return input.first()
+            .split(',')
+            .flatMap { range ->
+                val (start, end) = range.split('-').map { it.toLong() }
+                (start..end).filter { !isValidId(it, extraCheck) }
+            }
+            .sum()
     }
-
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
     // Read the input from the `src/Day01.txt` file.
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+    val input = readInput("Day02")
+    part1(input, false).println() //64215794229
+    part1(input, true).println() //4174379265
+
 }
