@@ -1,0 +1,2 @@
+
+            numberOfRollsAllTime += xCount
