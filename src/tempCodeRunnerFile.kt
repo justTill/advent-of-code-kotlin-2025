@@ -1,1 +1,2 @@
-forEach
+))
+        var maxArea = 0L
