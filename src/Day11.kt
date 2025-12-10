@@ -6,7 +6,7 @@ fun main() {
     fun part2(input: List<String>): Int {
        return 2
     }
-    val input = readInput("Day0X")
+    val input = readInput("Day11")
     part1(input).println() 
     part2(input).println()
 }
